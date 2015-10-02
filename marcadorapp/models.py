@@ -1,17 +1,17 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-class Macardor(models.Model):
-	id=models.AutoField(primary_key=True)
-	url=models.models.URLField(max_length=20)
-	title=models.CharField(max_length=20)
-	description=models.TextField(max_length=20)
-	is_public=models.BooleanField(max_length=20)
-	date_created=models.DateTimeField(max_length=20)
-	date_updated=models.DateTimeField(max_length=20)
-	owner=models.ForeignKey(max_length=20)
-	tags=models.ManyToManyField(max_length=20)
-
 class Tag(models.Model):
-	id=models.AutoField(primary_key=True)
-	name=models.CharField(max_length=20)
+    name = models.CharField(max_length=50, unique=True)
+
+
+class Bookmark(models.Model):
+	url=models.URLField('url', max_length=255)
+	title=models.CharField('description', max_length=20)
+	description=models.TextField('description', blank=True)
+	is_public=models.BooleanField('public', default=True)
+	date_created=models.DateTimeField('date created')
+	date_updated=models.DateTimeField('date updated')
+	owner=models.ForeignKey(User, verbose_name='owner', related_name='bookmarks')
+	tags=models.ManyToManyField(Tag, blank=True)
