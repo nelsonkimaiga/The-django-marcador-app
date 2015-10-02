@@ -6,7 +6,7 @@ from .models import Bookmark
 def bookmark_list(request):
     bookmarks = Bookmark.public.all()
     context = {'bookmarks': bookmarks}
-    return render(request, 'marcadorapp/bookmark_list.html', context)
+    return render(request, 'marcador/bookmark_list.html', context)
 
 def bookmark_user(request, username):
     user = get_object_or_404(User, username=username)
@@ -15,4 +15,4 @@ def bookmark_user(request, username):
     else:
         bookmarks = Bookmark.public.filter(owner__username=username)
     context = {'bookmarks': bookmarks, 'owner': user}
-    return render(request, 'marcadorapp/bookmark_user.html', context)    
+    return render(request, 'marcador/bookmark_user.html', context)    
