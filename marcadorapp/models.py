@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.timezone import now
 
 # Create your models here.
 class Tag(models.Model):
@@ -12,6 +14,10 @@ class Tag(models.Model):
 
     def _str_(self):
     	return self.name
+class PublicBookManager(models.Manager):
+    def get_queryset(self):
+    qs=super(PublicBookManager, self).get_queryset()
+    return qs.filter(is_public=True)	
 
 
 class Bookmark(models.Model):
