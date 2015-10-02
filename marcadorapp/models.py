@@ -16,8 +16,8 @@ class Tag(models.Model):
     	return self.name
 class PublicBookManager(models.Manager):
     def get_queryset(self):
-    qs=super(PublicBookManager, self).get_queryset()
-    return qs.filter(is_public=True)	
+        qs=super(PublicBookManager, self).get_queryset()
+        return qs.filter(is_public=True)	
 
 
 class Bookmark(models.Model):
